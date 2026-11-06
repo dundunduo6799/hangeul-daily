@@ -2682,8 +2682,12 @@ function playSys(t,ok,fail){
     },350);
   }catch(e){failOnce("exception")}
 }
-/* ---- 文件路线：预生成神经人声（发音音频/<hash>.mp3，hash 与 build/gen_voice.py 一致） ---- */
-function voiceFile(t){return "audio/"+hashStr(String(t)).toString(16)+".mp3"}
+/* ---- 文件路线：预生成神经人声 ----
+ * 优先内嵌语音（完整版单文件 KRAUDIO_B64，hash→dataURI），否则取旁边 audio/ 文件夹（与 gen_voice.py 同 hash） */
+function voiceSrc(t){
+  const h=hashStr(String(t)).toString(16);
+  return (typeof KRAUDIO_B64!=="undefined"&&KRAUDIO_B64[h])?KRAUDIO_B64[h]:"audio/"+h+".mp3";
+}
 function playE(t,ok,fail){
   let fin=false,to=null;
   const failOnce=function(){
@@ -2708,7 +2712,7 @@ function playE(t,ok,fail){
     };
     el.onended=function(){if(my!==AUD.seq||fin)return;win()};
     el.onerror=function(){if(my===AUD.seq)failOnce()};
-    el.src=voiceFile(t);
+    el.src=voiceSrc(t);
     const p=el.play();if(p&&p.catch)p.catch(function(){if(my===AUD.seq)failOnce()});
   }catch(e){failOnce()}
 }
