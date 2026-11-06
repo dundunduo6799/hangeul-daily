@@ -1,0 +1,26 @@
+{
+  "name": "韩语每日训练",
+  "short_name": "韩语训练",
+  "description": "零基础韩语每日训练 · 한글学院/词汇/语法/听力 · 本机离线学习",
+  "lang": "zh-CN",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f4f4f1",
+  "theme_color": "#1e5bb8",
+  "icons": [
+    {
+      "src": "kr-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "kr-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
